@@ -4,20 +4,21 @@ import com.sun.istack.NotNull;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
+    @Column(nullable = false)
     private String title;
 
     @NotBlank
+    @Column(nullable = false)
     private String author;
 
     public Long getId() {
@@ -60,10 +61,12 @@ public class Book {
         this.genre = genre;
     }
 
-    @NotNull
+    @NotBlank
+    @Column(nullable = false)
     private Integer year;
 
     @NotBlank
+    @Column(nullable = false)
     private String genre;
 
 }
