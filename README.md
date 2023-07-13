@@ -21,5 +21,6 @@ curl http://localhost:8080/api/books/{id}
 curl -X PUT -H "Content-Type: application/json" -d '{"title":"Updated Book ","author":"Updated Name","isbn":"1234567890"}' http://localhost:8080/api/books/{id}
 ```
 **Delete a book (__DELETE_ request):**
+```
 curl -X DELETE http://localhost:8080/api/books/{id}
 ```
