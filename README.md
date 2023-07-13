@@ -1,7 +1,7 @@
-## Rest_App_Project
+# Rest_App_Project
 To run the server we can use varios programs as postman,or
 
-# Postman requests
+## Postman requests
 GET /api/books: Retrieve all books.
 GET /api/books/{id}: Retrieve a book by its ID.
 POST /api/books: Create a new book.
