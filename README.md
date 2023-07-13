@@ -1,5 +1,5 @@
 # Rest_App_Project
-To run the server we can use varios programs as postman,or CURL,Paw etc.
+To run the server we can use varios programs as Postman, CURL, Paw, Insomnia etc.
 
 ## Postman requests
 - GET /api/books: Retrieve all books.
