@@ -9,6 +9,5 @@ To run the server we can use varios programs as postman,or CURL,Paw etc.
 - DELETE /api/books/{id}: Delete a book by its ID.
 ## CURL requests in terminal
 **Create a book (POST request):**
-    curl -X POST -H "Content-Type: application/json" -d '{"title":"New Book Title","author":"New Author Name","isbn":"1234567890"}' http://localhost:8080/api/books
-
-$ hello?
+   
+curl https://api.github.com/repos/{owner}/{repo}/readme -H "Accept: application/vnd.github.v3+json"
