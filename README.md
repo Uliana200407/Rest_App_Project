@@ -8,7 +8,18 @@ To run the server we can use varios programs as postman,or CURL,Paw etc.
 - PUT /api/books/{id}: Update an existing book by its ID.
 - DELETE /api/books/{id}: Delete a book by its ID.
 ## CURL requests in terminal
-**Create a book (POST request):**
+**Create a book (__POST_ request):**
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"title":"New Book Title","author":"New Author Name","isbn":"1234567890"}' http://localhost:8080/api/books
+curl -X POST -H "Content-Type: application/json" -d '{"title":"New Book","author":"New Name","isbn":"1234567890"}' http://localhost:8080/api/books
+```
+**Get a book by ID (__GET_ request):**
+```
+curl http://localhost:8080/api/books/{id}
+```
+**Update a book (__PUT_ request):**
+```
+curl -X PUT -H "Content-Type: application/json" -d '{"title":"Updated Book ","author":"Updated Name","isbn":"1234567890"}' http://localhost:8080/api/books/{id}
+```
+**Delete a book (__DELETE_ request):**
+curl -X DELETE http://localhost:8080/api/books/{id}
 ```
