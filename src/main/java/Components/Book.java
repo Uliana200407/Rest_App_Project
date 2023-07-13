@@ -21,6 +21,18 @@ public class Book {
     @Column(nullable = false)
     private String author;
 
+    public Book(long id, String title, String author, int year, String genre) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+    }
+
+    public Book() {
+
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,4 +1,5 @@
 package Actions;
+
 import Components.Book;
 import Components.BookRepository;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +9,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,13 +18,17 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"Service", "Components","Actions"})
+@ComponentScan(basePackages = {"Service", "Components", "Actions"})
 public class Rest_App_Project implements BookRepository {
     public static void main(String[] args) {
         SpringApplication.run(Rest_App_Project.class, args);
+        run();
+    }
+
+    private static void run() {
         sendPostRequest();
     }
-    @PostMapping("/send-request")
+
     private static void sendPostRequest() {
         try {
             URL url = new URL("http://localhost:8080/api/books");
@@ -33,8 +37,8 @@ public class Rest_App_Project implements BookRepository {
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
 
-            // Відправка JSON-даних
-            String jsonData = "{\"title\":\"New Book Title\",\"author\":\"New Author Name\",\"isbn\":\"1234567890\"}";
+            // Send JSON data
+            String jsonData = "{\"title\":\"New Book Title\",\"author\":\"New Author Name\",\"publicationYear\":2023,\"genre\":\"New Genre\"}";
             try (OutputStream outputStream = connection.getOutputStream()) {
                 byte[] input = jsonData.getBytes("utf-8");
                 outputStream.write(input, 0, input.length);
