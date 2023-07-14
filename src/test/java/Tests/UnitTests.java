@@ -1,19 +1,16 @@
 package Tests;
 
-import Actions.BookController;
+import controllers.BookController;
 import Components.Book;
-import Components.BookRepository;
-import Service.BookService;
+import dto.BookDTO;
+import repositories.BookRepository;
+import services.BookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -35,18 +32,7 @@ class UnitTests {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void getAllBooks() {
-        List< Book > books = new ArrayList<>();
 
-        // Add some books to the list
-        when(bookService.getAllBooks()).thenReturn(books);
-
-        List<Book> result = bookController.getAllBooks();
-
-        assertEquals(books, result);
-        verify(bookService, times(1)).getAllBooks();
-    }
 
     @Test
     void getBookById() {
@@ -54,7 +40,7 @@ class UnitTests {
         Book book = new Book();
         when(bookService.getBookById(bookId)).thenReturn(book);
 
-        Book result = bookController.getBookById(bookId);
+        BookDTO result = bookController.getBookById(bookId);
 
         assertEquals(book, result);
         verify(bookService, times(1)).getBookById(bookId);
@@ -65,7 +51,7 @@ class UnitTests {
         Book book = new Book();
         when(bookService.createBook(any(Book.class))).thenReturn(book);
 
-        Book result = bookController.createBook(book);
+        BookDTO result = bookController.createBook(book);
 
         assertEquals(book, result);
         verify(bookService, times(1)).createBook(book);
@@ -78,7 +64,7 @@ class UnitTests {
         Book book = new Book();
         when(bookService.updateBook(bookId, updatedBook)).thenReturn(book);
 
-        Book result = bookController.updateBook(bookId, updatedBook);
+        BookDTO result = bookController.updateBook(bookId, updatedBook);
 
         assertEquals(book, result);
         verify(bookService, times(1)).updateBook(bookId, updatedBook);

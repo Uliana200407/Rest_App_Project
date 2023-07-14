@@ -1,6 +1,6 @@
 package Components;
 
-import com.sun.istack.NotNull;
+import dto.BookDTO;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 
@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book extends BookDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

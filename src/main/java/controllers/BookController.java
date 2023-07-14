@@ -1,7 +1,9 @@
-package Actions;
+package controllers;
 
-import Components.Book;
-import Service.BookService;
+import Components.*;
+import dto.BookDTO;
+import services.BookService;
+import mapper.DTOMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,23 +23,27 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
+    public List< BookDTO > getAllBooks() {
         return bookService.getAllBooks();
     }
 
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable Long id) {
+    public BookDTO getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
 
     @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookService.createBook(book);
+    public BookDTO createBook(@RequestBody BookDTO bookDTO) {
+        Book book = DTOMapper.convertToEntity(bookDTO);
+        BookDTO createdBook = bookService.createBook(book);
+        return DTOMapper.convertToDTO(createdBook);
     }
 
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
-        return bookService.updateBook(id, updatedBook);
+    public BookDTO updateBook(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
+        Book updatedBook = DTOMapper.convertToEntity(updatedBookDTO);
+        BookDTO updated = bookService.updateBook(id, updatedBook);
+        return DTOMapper.convertToDTO(updated);
     }
 
     @DeleteMapping("/{id}")
@@ -55,7 +61,7 @@ public class BookController {
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
 
-            // Відправка JSON-даних
+            // Sending JSON data
             String jsonData = "{\"title\":\"New Book Title\",\"author\":\"New Author Name\",\"isbn\":\"1234567890\"}";
             try (OutputStream outputStream = connection.getOutputStream()) {
                 byte[] input = jsonData.getBytes("utf-8");
