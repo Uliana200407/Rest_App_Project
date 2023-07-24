@@ -1,6 +1,6 @@
 package main;
 
-import Components.Book;
+import сomponents.Book;
 import dto.BookDTO;
 import repositories.BookRepository;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"exceptions", "Components", "controllers"})
+@ComponentScan(basePackages = {"exceptions", "сomponents", "controllers"})
 public abstract class Rest_App_Project implements BookRepository {
     public static void main(String[] args) {
         SpringApplication.run ( Rest_App_Project.class, args );

@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.Optional;
+
 public class BookDTO {
     public BookDTO() {
 
@@ -28,33 +30,38 @@ public class BookDTO {
         this.author = author;
     }
 
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
     private String title;
     private String author;
-    private Integer year;
-    private String genre;
+
+
+    public Optional < Integer > getYear() {
+        return year;
+    }
+
+    public void setYear(Optional < Integer > year) {
+        this.year = year;
+    }
+
+    public Optional < String > getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Optional < String > genre) {
+        this.genre = genre;
+    }
+
+    private Optional<Integer> year;
+    private Optional <String> genre;
     private Long id;
 
-    public BookDTO(Long id, String title, String author, Integer year, String genre) {
+    public BookDTO(Long id, String title, String author,Optional < Integer > year, Optional < String > genre) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
         this.genre = genre;
     }
+
+
 }

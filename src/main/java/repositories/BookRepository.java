@@ -1,6 +1,6 @@
 package repositories;
 
-import Components.Book;
+import сomponents.Book;
 import dto.BookDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

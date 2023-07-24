@@ -1,10 +1,11 @@
-package Components;
+package сomponents;
 
 import dto.BookDTO;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "books")
@@ -57,16 +58,16 @@ public class Book extends BookDTO {
         this.author = author;
     }
 
-    public Integer getYear() {
-        return year;
+    public Optional < Integer > getYear() {
+        return Optional.ofNullable ( year );
     }
 
     public void setYear(Integer year) {
         this.year = year;
     }
 
-    public String getGenre() {
-        return genre;
+    public Optional < String > getGenre() {
+        return Optional.ofNullable ( genre );
     }
 
     public void setGenre(String genre) {

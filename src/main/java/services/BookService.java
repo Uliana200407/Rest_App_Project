@@ -1,6 +1,6 @@
 package services;
 
-import Components.Book;
+import сomponents.Book;
 import dto.BookDTO;
 import exceptions.ResourceNotFoundException;
 import repositories.BookRepository;
@@ -50,6 +50,7 @@ public class BookService {
         BookDTO updatedBook = bookRepository.save(book); // Make sure the repository returns a BookDTO object
         return updatedBook;
     }
+
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }

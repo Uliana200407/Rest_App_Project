@@ -1,6 +1,7 @@
 package controllers;
 
-import Components.*;
+import org.springframework.web.client.RestTemplate;
+import сomponents.*;
 import dto.BookDTO;
 import services.BookService;
 import mapper.DTOMapper;
@@ -12,14 +13,19 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
     private final BookService bookService;
+    private final RestTemplate restTemplate;
 
-    public BookController(BookService bookService) {
+
+    public BookController(BookService bookService,RestTemplate restTemplate) {
         this.bookService = bookService;
+        this.restTemplate = restTemplate;
+
     }
 
     @GetMapping
@@ -40,11 +46,29 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public BookDTO updateBook(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
-        Book updatedBook = DTOMapper.convertToEntity(updatedBookDTO);
-        BookDTO updated = bookService.updateBook(id, updatedBook);
-        return DTOMapper.convertToDTO(updated);
+    public BookDTO updateBook(@PathVariable Long id, @RequestBody Optional<BookDTO> updatedBookDTO) {
+        BookDTO book = bookService.getBookById(id);
+
+        updatedBookDTO.ifPresent(updated -> {
+            if (updated.getTitle() != null) {
+                book.setTitle(updated.getTitle());
+            }
+            if (updated.getAuthor() != null) {
+                book.setAuthor(updated.getAuthor());
+            }
+            if (updated.getYear() != null) {
+                book.setYear(updated.getYear());
+            }
+            if (updated.getGenre() != null) {
+                book.setGenre(updated.getGenre());
+            }
+        });
+
+        BookDTO updatedBook = bookService.updateBook(id, book);
+        return updatedBook;
     }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
@@ -73,5 +97,9 @@ public class BookController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
     }
 }

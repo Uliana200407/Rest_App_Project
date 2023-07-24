@@ -1,7 +1,7 @@
 package Tests;
 
 import controllers.BookController;
-import Components.Book;
+import сomponents.Book;
 import dto.BookDTO;
 import repositories.BookRepository;
 import services.BookService;
@@ -11,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -24,15 +26,10 @@ class UnitTests {
     @InjectMocks
     private BookController bookController;
 
-
-
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
-
 
     @Test
     void getBookById() {
@@ -60,14 +57,18 @@ class UnitTests {
     @Test
     void updateBook() {
         Long bookId = 1L;
-        Book updatedBook = new Book();
-        Book book = new Book();
-        when(bookService.updateBook(bookId, updatedBook)).thenReturn(book);
+        Optional <BookDTO> updatedBookDTO = Optional.of(new BookDTO());
+        BookDTO book = new BookDTO();
+        when(bookService.getBookById(bookId)).thenReturn(book);
 
-        BookDTO result = bookController.updateBook(bookId, updatedBook);
+        BookDTO expectedUpdatedBook = new BookDTO();
+        when(bookService.updateBook(bookId, book)).thenReturn(expectedUpdatedBook);
 
-        assertEquals(book, result);
-        verify(bookService, times(1)).updateBook(bookId, updatedBook);
+        BookDTO result = bookController.updateBook(bookId, updatedBookDTO);
+
+        assertEquals(expectedUpdatedBook, result);
+        verify(bookService, times(1)).getBookById(bookId);
+        verify(bookService, times(1)).updateBook(bookId, book);
     }
 
     @Test
