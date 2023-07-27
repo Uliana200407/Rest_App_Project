@@ -1,3 +1,4 @@
+<a href="https://www.oracle.com/java/technologies/downloads/"><img src="https://img.icons8.com/?size=2x&id=13679&format=png" align="right" width="10%"></a>
 # Rest_App_Project
 To run the server we can use varios programs as Postman, CURL, Paw, Insomnia etc.
 
@@ -8,19 +9,19 @@ To run the server we can use varios programs as Postman, CURL, Paw, Insomnia etc
 - PUT /api/books/{id}: Update an existing book by its ID.
 - DELETE /api/books/{id}: Delete a book by its ID.
 ## CURL requests in terminal
-**Create a book (__POST_ request):**
+**Create a book (_POST_ request):**
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"title":"New Book","author":"New Name","isbn":"1234567890"}' http://localhost:8080/api/books
 ```
-**Get a book by ID (__GET_ request):**
+**Get a book by ID (_GET_ request):**
 ```
 curl http://localhost:8080/api/books/{id}
 ```
-**Update a book (__PUT_ request):**
+**Update a book (_PUT_ request):**
 ```
 curl -X PUT -H "Content-Type: application/json" -d '{"title":"Updated Book ","author":"Updated Name","isbn":"1234567890"}' http://localhost:8080/api/books/{id}
 ```
-**Delete a book (__DELETE_ request):**
+**Delete a book (_DELETE_ request):**
 ```
 curl -X DELETE http://localhost:8080/api/books/{id}
 ```
